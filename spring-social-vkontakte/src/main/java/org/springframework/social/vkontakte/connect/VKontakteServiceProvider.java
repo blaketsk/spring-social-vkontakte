@@ -40,16 +40,16 @@ public class VKontakteServiceProvider extends AbstractOAuth2ServiceProvider<VKon
 
     public VKontakte getApi(String accessToken) {
         Integer providerUserId = null;
-        Matcher idMathcer = Pattern.compile("\\[id=([^\\]]*)\\]").matcher(accessToken);
-        if (idMathcer.find()) {
-            providerUserId = Integer.valueOf(idMathcer.group(1));
+        Matcher idMatcher = Pattern.compile("\\[id=([^\\]]*)\\]").matcher(accessToken);
+        if (idMatcher.find()) {
+            providerUserId = Integer.valueOf(idMatcher.group(1));
             accessToken = accessToken.replaceAll("\\[id=" + providerUserId + "\\]", "");
         }
 
         String email = null;
-        Matcher emailMathcer = Pattern.compile("\\[email=([^\\]]*)\\]").matcher(accessToken);
-        if (emailMathcer.find()) {
-            email = emailMathcer.group(1);
+        Matcher emailMatcher = Pattern.compile("\\[email=([^\\]]*)\\]").matcher(accessToken);
+        if (emailMatcher.find()) {
+            email = emailMatcher.group(1);
             accessToken = accessToken.replaceAll("\\[email=" + email + "\\]", "");
         }
 
